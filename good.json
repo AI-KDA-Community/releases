@@ -1,0 +1,254 @@
+{
+  "canonical": [
+    {
+      "URL": "https://kda-chain.org",
+      "Label": "kda-chain.org",
+      "Kind": "org"
+    },
+    {
+      "URL": "https://github.com/kda-community",
+      "Label": "kda-community org",
+      "Kind": "org"
+    },
+    {
+      "URL": "https://kda-chain.org/docs/",
+      "Label": "community docs",
+      "Kind": "docs"
+    },
+    {
+      "URL": "https://pact-util-lib.readthedocs.io/en/beta_0.11/",
+      "Label": "pact-util-lib",
+      "Kind": "docs"
+    },
+    {
+      "URL": "https://api.chainweb-community.org",
+      "Label": "mainnet01 API",
+      "Kind": "api"
+    },
+    {
+      "URL": "https://api.testnet.chainweb-community.org",
+      "Label": "testnet06 API",
+      "Kind": "api"
+    },
+    {
+      "URL": "https://fr-1.chainweb-community.org",
+      "Label": "mainnet bootstrap fr-1",
+      "Kind": "network"
+    },
+    {
+      "URL": "https://nl-1.chainweb-community.org",
+      "Label": "mainnet bootstrap nl-1",
+      "Kind": "network"
+    },
+    {
+      "URL": "https://pl-1.chainweb-community.org",
+      "Label": "mainnet bootstrap pl-1",
+      "Kind": "network"
+    },
+    {
+      "URL": "https://pl-2.chainweb-community.org",
+      "Label": "mainnet bootstrap pl-2",
+      "Kind": "network"
+    },
+    {
+      "URL": "https://ca-1.chainweb-community.org",
+      "Label": "mainnet bootstrap ca-1",
+      "Kind": "network"
+    },
+    {
+      "URL": "https://testnet06-1.chainweb-community.org",
+      "Label": "testnet06 bootstrap",
+      "Kind": "network"
+    },
+    {
+      "URL": "https://explorer.chainweb-community.org/mainnet",
+      "Label": "explorer mainnet",
+      "Kind": "explorer"
+    },
+    {
+      "URL": "https://explorer.chainweb-community.org/testnet",
+      "Label": "explorer testnet",
+      "Kind": "explorer"
+    },
+    {
+      "URL": "https://denascan.com",
+      "Label": "denascan",
+      "Kind": "explorer"
+    },
+    {
+      "URL": "https://explorer.eckowallet.com/",
+      "Label": "eckowallet",
+      "Kind": "explorer"
+    },
+    {
+      "URL": "https://tools.chainweb-community.org/",
+      "Label": "community tools",
+      "Kind": "tool"
+    },
+    {
+      "URL": "https://github.com/kda-community/kda-tool",
+      "Label": "kda-tool",
+      "Kind": "tool"
+    },
+    {
+      "URL": "https://ide.forkme.fun/",
+      "Label": "ForkMe Pact IDE",
+      "Kind": "tool"
+    },
+    {
+      "URL": "https://snapshots.chainweb-community.org",
+      "Label": "snapshots",
+      "Kind": "tool"
+    },
+    {
+      "URL": "https://api.chainweb-community.org/openapi/",
+      "Label": "Chainweb OpenAPI spec",
+      "Kind": "spec"
+    },
+    {
+      "URL": "https://nodes.kadena.ws/",
+      "Label": "network monitor",
+      "Kind": "monitor"
+    },
+    {
+      "URL": "https://github.com/kda-community/chainweb-node",
+      "Label": "chainweb-node",
+      "Kind": "org"
+    },
+    {
+      "URL": "https://github.com/kda-community/pact-5",
+      "Label": "pact-5",
+      "Kind": "org"
+    },
+    {
+      "URL": "https://github.com/kda-community/testnet06",
+      "Label": "testnet06 bootstrap tx",
+      "Kind": "org"
+    },
+    {
+      "URL": "https://github.com/kda-community/kadena-docs-new",
+      "Label": "kadena-docs source",
+      "Kind": "org"
+    },
+    {
+      "URL": "https://tools.chainweb-community.org/faucet/existing",
+      "Label": "mainnet faucet (existing account)",
+      "Kind": "faucet"
+    },
+    {
+      "URL": "https://tools.chainweb-community.org/faucet/new",
+      "Label": "testnet06 faucet (new account)",
+      "Kind": "faucet"
+    }
+  ],
+  "commands": [
+    {
+      "Name": "keys-generate",
+      "Network": "all",
+      "Purpose": "keys",
+      "Description": "Generate a fresh keypair for signing (write to a safe location)",
+      "Cmd": "kda-tool keygen -o \u003ckey.yaml\u003e",
+      "Docs": "https://github.com/kda-community/kda-tool",
+      "Verify": ""
+    },
+    {
+      "Name": "deploy-module-mainnet",
+      "Network": "mainnet01",
+      "Purpose": "deploy",
+      "Description": "Deploy a Pact module to mainnet01 on a chosen chain",
+      "Cmd": "kda-tool deploy --network mainnet01 --chain \u003cn\u003e --signer \u003ckey.yaml\u003e --code \u003cmodule.pact\u003e",
+      "Docs": "https://github.com/kda-community/kda-tool",
+      "Verify": "TODO: verify exact flag names against kda-tool --help"
+    },
+    {
+      "Name": "deploy-module-testnet",
+      "Network": "testnet06",
+      "Purpose": "deploy",
+      "Description": "Deploy a Pact module to testnet06 on a chosen chain",
+      "Cmd": "kda-tool deploy --network testnet06 --chain \u003cn\u003e --signer \u003ckey.yaml\u003e --code \u003cmodule.pact\u003e",
+      "Docs": "https://github.com/kda-community/kda-tool",
+      "Verify": "TODO: verify exact flag names against kda-tool --help"
+    },
+    {
+      "Name": "query-list-modules",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "List deployed modules on a chain via Pact /local",
+      "Cmd": "sot local \u003cnetwork\u003e \u003cchain\u003e '(list-modules)'",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "faucet-testnet06",
+      "Network": "testnet06",
+      "Purpose": "faucet",
+      "Description": "Request testnet06 coins via the community faucet",
+      "Cmd": "open https://tools.chainweb-community.org/faucet/new",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "node-start-mainnet",
+      "Network": "mainnet01",
+      "Purpose": "node",
+      "Description": "Bootstrap a chainweb-node against the community mainnet",
+      "Cmd": "chainweb-node --config \u003cchainweb-node.yaml\u003e",
+      "Docs": "https://github.com/kda-community/chainweb-node",
+      "Verify": ""
+    },
+    {
+      "Name": "node-start-testnet",
+      "Network": "testnet06",
+      "Purpose": "node",
+      "Description": "Bootstrap a chainweb-node against testnet06",
+      "Cmd": "chainweb-node --config \u003cchainweb-testnet06.yaml\u003e",
+      "Docs": "https://github.com/kda-community/testnet06",
+      "Verify": ""
+    }
+  ],
+  "releases": [
+    {
+      "URL": "https://github.com/kda-community/chainweb-node/releases",
+      "Label": "chainweb-node",
+      "Note": ""
+    },
+    {
+      "URL": "https://github.com/kda-community/pact-5/releases",
+      "Label": "pact-5",
+      "Note": ""
+    },
+    {
+      "URL": "https://github.com/kda-community/kda-tool/releases",
+      "Label": "kda-tool",
+      "Note": ""
+    },
+    {
+      "URL": "https://github.com/kda-community/testnet06/releases",
+      "Label": "testnet06",
+      "Note": ""
+    }
+  ],
+  "ai_sections": [
+    {
+      "Kind": "ai-tooling",
+      "Title": "AI tooling",
+      "Status": "coming soon"
+    },
+    {
+      "Kind": "ai-skills",
+      "Title": "Skills",
+      "Status": "coming soon"
+    },
+    {
+      "Kind": "ai-prompts",
+      "Title": "Prompts",
+      "Status": "coming soon"
+    },
+    {
+      "Kind": "ai-harnesses",
+      "Title": "Harnesses",
+      "Status": "coming soon"
+    }
+  ],
+  "ai_entries": null
+}
