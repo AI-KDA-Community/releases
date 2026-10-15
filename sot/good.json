@@ -146,8 +146,8 @@
       "Name": "keys-generate",
       "Network": "all",
       "Purpose": "keys",
-      "Description": "Generate a fresh keypair for signing (write to a safe location)",
-      "Cmd": "kda-tool keygen -o \u003ckey.yaml\u003e",
+      "Description": "Generate a fresh keypair for signing",
+      "Cmd": "kda-tool keygen -o key.yaml",
       "Docs": "https://github.com/kda-community/kda-tool",
       "Verify": ""
     },
@@ -155,26 +155,89 @@
       "Name": "deploy-module-mainnet",
       "Network": "mainnet01",
       "Purpose": "deploy",
-      "Description": "Deploy a Pact module to mainnet01 on a chosen chain",
-      "Cmd": "kda-tool deploy --network mainnet01 --chain \u003cn\u003e --signer \u003ckey.yaml\u003e --code \u003cmodule.pact\u003e",
+      "Description": "Deploy a Pact module to mainnet01 chain 0",
+      "Cmd": "kda-tool deploy --network mainnet01 --chain 0 --signer key.yaml --code module.pact",
       "Docs": "https://github.com/kda-community/kda-tool",
-      "Verify": "TODO: verify exact flag names against kda-tool --help"
+      "Verify": "TODO: confirm exact flags against kda-tool --help"
     },
     {
       "Name": "deploy-module-testnet",
       "Network": "testnet06",
       "Purpose": "deploy",
-      "Description": "Deploy a Pact module to testnet06 on a chosen chain",
-      "Cmd": "kda-tool deploy --network testnet06 --chain \u003cn\u003e --signer \u003ckey.yaml\u003e --code \u003cmodule.pact\u003e",
+      "Description": "Deploy a Pact module to testnet06 chain 0",
+      "Cmd": "kda-tool deploy --network testnet06 --chain 0 --signer key.yaml --code module.pact",
       "Docs": "https://github.com/kda-community/kda-tool",
-      "Verify": "TODO: verify exact flag names against kda-tool --help"
+      "Verify": "TODO: confirm exact flags against kda-tool --help"
     },
     {
       "Name": "query-list-modules",
-      "Network": "all",
+      "Network": "mainnet01",
       "Purpose": "query",
-      "Description": "List deployed modules on a chain via Pact /local",
-      "Cmd": "sot local \u003cnetwork\u003e \u003cchain\u003e '(list-modules)'",
+      "Description": "List deployed modules on mainnet01 chain 0 via the community endpoint",
+      "Cmd": "sot local mainnet01 0 '(list-modules)'",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-describe-module",
+      "Network": "mainnet01",
+      "Purpose": "query",
+      "Description": "Describe the coin module on mainnet01 chain 0 via the community endpoint",
+      "Cmd": "sot local mainnet01 0 '(describe-module \"coin\")'",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-cut",
+      "Network": "mainnet01",
+      "Purpose": "query",
+      "Description": "Current cut from the community mainnet01 endpoint",
+      "Cmd": "curl -sS 'https://api.chainweb-community.org/chainweb/0.0/mainnet01/cut' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-block",
+      "Network": "mainnet01",
+      "Purpose": "query",
+      "Description": "Last 10 blocks on mainnet01 chain 0 via the community endpoint",
+      "Cmd": "curl -sS 'https://api.chainweb-community.org/chainweb/0.0/mainnet01/chain/0/block?limit=10' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-header",
+      "Network": "mainnet01",
+      "Purpose": "query",
+      "Description": "Last 10 headers on mainnet01 chain 0 via the community endpoint",
+      "Cmd": "curl -sS 'https://api.chainweb-community.org/chainweb/0.0/mainnet01/chain/0/header?limit=10' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-header-by-hash",
+      "Network": "mainnet01",
+      "Purpose": "query",
+      "Description": "Fetch a mainnet01 chain 0 header by its hash via the community endpoint",
+      "Cmd": "curl -sS -H 'Accept: application/json;blockheader-encoding=object' 'https://api.chainweb-community.org/chainweb/0.0/mainnet01/chain/0/header/FIe-VDNSOLAJtMtkQ75aTA0__r0iQadHwx73IYgWTE4' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-payload",
+      "Network": "mainnet01",
+      "Purpose": "query",
+      "Description": "Fetch a mainnet01 chain 0 payload by its hash via the community endpoint",
+      "Cmd": "curl -sS 'https://api.chainweb-community.org/chainweb/0.0/mainnet01/chain/0/payload/2ixUhFWt9_1R-UemKElv7Of21nO3cscQqaTNnfZX5IA' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-payload-outputs",
+      "Network": "mainnet01",
+      "Purpose": "query",
+      "Description": "Fetch the outputs of a mainnet01 chain 0 payload via the community endpoint",
+      "Cmd": "curl -sS 'https://api.chainweb-community.org/chainweb/0.0/mainnet01/chain/0/payload/2ixUhFWt9_1R-UemKElv7Of21nO3cscQqaTNnfZX5IA/outputs' | jq",
       "Docs": "https://kda-chain.org/docs/",
       "Verify": ""
     },
@@ -188,21 +251,111 @@
       "Verify": ""
     },
     {
-      "Name": "node-start-mainnet",
-      "Network": "mainnet01",
+      "Name": "node-health-local",
+      "Network": "all",
       "Purpose": "node",
-      "Description": "Bootstrap a chainweb-node against the community mainnet",
-      "Cmd": "chainweb-node --config \u003cchainweb-node.yaml\u003e",
-      "Docs": "https://github.com/kda-community/chainweb-node",
+      "Description": "Local node health check",
+      "Cmd": "curl -sS http://localhost:1848/health-check",
+      "Docs": "https://kda-chain.org/docs/",
       "Verify": ""
     },
     {
-      "Name": "node-start-testnet",
-      "Network": "testnet06",
-      "Purpose": "node",
-      "Description": "Bootstrap a chainweb-node against testnet06",
-      "Cmd": "chainweb-node --config \u003cchainweb-testnet06.yaml\u003e",
-      "Docs": "https://github.com/kda-community/testnet06",
+      "Name": "query-list-modules-local",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "List deployed modules on a local node",
+      "Cmd": "sot local -host http://localhost:1848 mainnet01 0 '(list-modules)'",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-describe-module-local",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "Describe the coin module on a local node",
+      "Cmd": "sot local -host http://localhost:1848 mainnet01 0 '(describe-module \"coin\")'",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-cut-local",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "Current cut from a local node",
+      "Cmd": "curl -sS http://localhost:1848/chainweb/0.0/mainnet01/cut | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-block-local",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "Last 10 blocks on mainnet01 chain 0 from a local node",
+      "Cmd": "curl -sS 'http://localhost:1848/chainweb/0.0/mainnet01/chain/0/block?minheight=7315000\u0026limit=10' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-header-local",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "Last 10 headers on mainnet01 chain 0 from a local node",
+      "Cmd": "curl -sS 'http://localhost:1848/chainweb/0.0/mainnet01/chain/0/header?limit=10' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-header-by-hash-local",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "Fetch a mainnet01 chain 0 header by its hash from a local node",
+      "Cmd": "curl -sS -H 'Accept: application/json;blockheader-encoding=object' 'http://localhost:1848/chainweb/0.0/mainnet01/chain/0/header/FIe-VDNSOLAJtMtkQ75aTA0__r0iQadHwx73IYgWTE4' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-payload-local",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "Fetch a mainnet01 chain 0 payload by its hash from a local node",
+      "Cmd": "curl -sS 'http://localhost:1848/chainweb/0.0/mainnet01/chain/0/payload/2ixUhFWt9_1R-UemKElv7Of21nO3cscQqaTNnfZX5IA' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-payload-outputs-local",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "Fetch the outputs of a mainnet01 chain 0 payload from a local node",
+      "Cmd": "curl -sS 'http://localhost:1848/chainweb/0.0/mainnet01/chain/0/payload/2ixUhFWt9_1R-UemKElv7Of21nO3cscQqaTNnfZX5IA/outputs' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "query-header-stream-local",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "Stream new headers as they arrive from a local node",
+      "Cmd": "curl -sS -N http://localhost:1848/chainweb/0.0/mainnet01/header/updates",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "tx-poll-local",
+      "Network": "all",
+      "Purpose": "query",
+      "Description": "Poll a transaction result by request key",
+      "Cmd": "curl -sS -X POST http://localhost:1848/chainweb/0.0/mainnet01/chain/0/pact/api/v1/poll -H 'Content-Type: application/json' -d '{\"requestKeys\":[\"2ixUhFWt9_1R-UemKElv7Of21nO3cscQqaTNnfZX5IA\"]}' | jq",
+      "Docs": "https://kda-chain.org/docs/",
+      "Verify": ""
+    },
+    {
+      "Name": "tx-send-local",
+      "Network": "all",
+      "Purpose": "deploy",
+      "Description": "Submit a signed transaction to a local node",
+      "Cmd": "curl -sS -X POST http://localhost:1848/chainweb/0.0/mainnet01/chain/0/pact/api/v1/send -H 'Content-Type: application/json' -d @tx.json | jq",
+      "Docs": "https://kda-chain.org/docs/",
       "Verify": ""
     }
   ],
