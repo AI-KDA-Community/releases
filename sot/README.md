@@ -1,4 +1,4 @@
-# sot — source of truth for the Kadena Chainweb ecosystem
+# ai-kda-community — source of truth for the Kadena Chainweb ecosystem
 
 > Curated, machine-readable registry of canonical URLs, live networks, and deprecated resources. Check URLs, scan code for stale references, and look up endpoints — for humans, agents, and CI alike.
 
