@@ -5,17 +5,17 @@
 ## Install
 
 ```
-brew install AI-KDA-Community/sot/sot
+brew install ai-kda-community/tap/ai-kda-community
 ```
 
 ## Usage
 
 ```
-sot                 # overview with all sections
-sot good --json     # all valid resources as JSON
-sot bad  --json     # all deprecated resources as JSON
-sot check-url <url> # classify a URL
-sot scan <file>     # scan code for deprecated references
+ai-kda-community                 # overview with all sections
+ai-kda-community good --json     # all valid resources as JSON
+ai-kda-community bad  --json     # all deprecated resources as JSON
+ai-kda-community check-url <url> # classify a URL
+ai-kda-community scan <file>     # scan code for deprecated references
 ```
 
 ## ✓ Canonical URLs (28 — use these)
